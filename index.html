@@ -20,6 +20,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+        .containers{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
         h1, h2 {
             text-align: center;
             color: #333;
@@ -158,76 +163,78 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Application SKU - Génération et Inversion</h1>
-        <h2>Générateur SKU</h2>
-        <label for="produit">Produit:</label>
-        <select id="produit">
-            <option value="BEL">Beluga</option>
-            <option value="DUG">Dugong</option>
-        </select>
+    <div class="containers">
+        <div class="container">
+            <h1>Application SKU - Génération et Inversion</h1>
+            <h2>Générateur SKU</h2>
+            <label for="produit">Produit:</label>
+            <select id="produit">
+                <option value="BEL">Beluga</option>
+                <option value="DUG">Dugong</option>
+            </select>
 
-        <label for="assise">Assise (Couleur):</label>
-        <select id="assise">
-            <option value="ROU">Rouge</option>
-            <option value="NOI">Noir</option>
-            <option value="BLA">Blanc</option>
-            <option value="BLE">Bleu</option>
-            <option value="VER">Vert</option>
-            <option value="JAU">Jaune</option>
-            <option value="MEN">Menthe</option>
-            <option value="PEC">Pêche</option>
-        </select>
+            <label for="assise">Assise (Couleur):</label>
+            <select id="assise">
+                <option value="ROU">Rouge</option>
+                <option value="NOI">Noir</option>
+                <option value="BLA">Blanc</option>
+                <option value="BLE">Bleu</option>
+                <option value="VER">Vert</option>
+                <option value="JAU">Jaune</option>
+                <option value="MEN">Menthe</option>
+                <option value="PEC">Pêche</option>
+            </select>
 
-        <label for="dossier">Dossier (Couleur):</label>
-        <select id="dossier">
-            <option value="ROU">Rouge</option>
-            <option value="NOI">Noir</option>
-            <option value="BLA">Blanc</option>
-            <option value="BLE">Bleu</option>
-            <option value="VER">Vert</option>
-            <option value="JAU">Jaune</option>
-            <option value="MEN">Menthe</option>
-            <option value="PEC">Pêche</option>
-        </select>
+            <label for="dossier">Dossier (Couleur):</label>
+            <select id="dossier">
+                <option value="ROU">Rouge</option>
+                <option value="NOI">Noir</option>
+                <option value="BLA">Blanc</option>
+                <option value="BLE">Bleu</option>
+                <option value="VER">Vert</option>
+                <option value="JAU">Jaune</option>
+                <option value="MEN">Menthe</option>
+                <option value="PEC">Pêche</option>
+            </select>
 
-        <label for="piedGauche">Pied Gauche (Couleur):</label>
-        <select id="piedGauche">
-            <option value="ROU">Rouge</option>
-            <option value="NOI">Noir</option>
-            <option value="BLA">Blanc</option>
-            <option value="BLE">Bleu</option>
-            <option value="VER">Vert</option>
-            <option value="JAU">Jaune</option>
-            <option value="MEN">Menthe</option>
-            <option value="PEC">Pêche</option>
-        </select>
+            <label for="piedGauche">Pied Gauche (Couleur):</label>
+            <select id="piedGauche">
+                <option value="ROU">Rouge</option>
+                <option value="NOI">Noir</option>
+                <option value="BLA">Blanc</option>
+                <option value="BLE">Bleu</option>
+                <option value="VER">Vert</option>
+                <option value="JAU">Jaune</option>
+                <option value="MEN">Menthe</option>
+                <option value="PEC">Pêche</option>
+            </select>
 
-        <label for="piedDroit">Pied Droit (Couleur):</label>
-        <select id="piedDroit">
-            <option value="ROU">Rouge</option>
-            <option value="NOI">Noir</option>
-            <option value="BLA">Blanc</option>
-            <option value="BLE">Bleu</option>
-            <option value="VER">Vert</option>
-            <option value="JAU">Jaune</option>
-            <option value="MEN">Menthe</option>
-            <option value="PEC">Pêche</option>
-        </select>
+            <label for="piedDroit">Pied Droit (Couleur):</label>
+            <select id="piedDroit">
+                <option value="ROU">Rouge</option>
+                <option value="NOI">Noir</option>
+                <option value="BLA">Blanc</option>
+                <option value="BLE">Bleu</option>
+                <option value="VER">Vert</option>
+                <option value="JAU">Jaune</option>
+                <option value="MEN">Menthe</option>
+                <option value="PEC">Pêche</option>
+            </select>
 
-        <button type="button" class="button" id="generateSKUButton">Générer le SKU</button>
-        <input type="text" id="generatedSKU" readonly placeholder="SKU généré apparaîtra ici">
-        <button type="button" class="button" id="copySKUButton">Copier le SKU</button>
-    </div>
-
-    <div class="container">
-        <h2>Inverser le SKU</h2>
-        <div id="inputArea">
-            <label for="skuInput">Entrez les SKU(s) (séparés par des virgules ou des nouvelles lignes) :</label>
-            <textarea id="skuInput"></textarea>
+            <button type="button" class="button" id="generateSKUButton">Générer le SKU</button>
+            <input type="text" id="generatedSKU" readonly placeholder="SKU généré apparaîtra ici">
+            <button type="button" class="button" id="copySKUButton">Copier le SKU</button>
         </div>
-        <button class="button" id="reverseSKUButton">Inverser le SKU</button>
-        <div id="outputArea"></div>
+    
+        <div class="container">
+            <h2>Inverser le SKU</h2>
+            <div id="inputArea">
+                <label for="skuInput">Entrez les SKU(s) (séparés par des virgules ou des nouvelles lignes) :</label>
+                <textarea id="skuInput"></textarea>
+            </div>
+            <button class="button" id="reverseSKUButton">Inverser le SKU</button>
+            <div id="outputArea"></div>
+        </div>
     </div>
 </body>
 </html>
