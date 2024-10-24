@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKU Generator avec Couleurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .generate-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .generate-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SKU Generator avec Couleurs</h1>
+        <p>Veuillez sélectionner le produit, chaque partie et sa couleur pour générer un SKU.</p>
+
+        <label for="produit">Produit:</label>
+        <select id="produit">
+            <option value="BEL">Beluga</option>
+            <option value="DUG">Dugong</option>
+        </select>
+
+        <label for="assise">Assise (Couleur):</label>
+        <select id="assise">
+            <option value="ROU">Rouge</option>
+            <option value="NOI">Noir</option>
+            <option value="BLA">Blanc</option>
+            <option value="BLE">Bleu</option>
+            <option value="VER">Vert</option>
+            <option value="JAU">Jaune</option>
+            <option value="MEN">Menthe</option>
+            <option value="PEC">Pêche</option>
+        </select>
+
+        <label for="dossier">Dossier (Couleur):</label>
+        <select id="dossier">
+            <option value="ROU">Rouge</option>
+            <option value="NOI">Noir</option>
+            <option value="BLA">Blanc</option>
+            <option value="BLE">Bleu</option>
+            <option value="VER">Vert</option>
+            <option value="JAU">Jaune</option>
+            <option value="MEN">Menthe</option>
+            <option value="PEC">Pêche</option>
+        </select>
+
+        <label for="piedGauche">Pied Gauche (Couleur):</label>
+        <select id="piedGauche">
+            <option value="ROU">Rouge</option>
+            <option value="NOI">Noir</option>
+            <option value="BLA">Blanc</option>
+            <option value="BLE">Bleu</option>
+            <option value="VER">Vert</option>
+            <option value="JAU">Jaune</option>
+            <option value="MEN">Menthe</option>
+            <option value="PEC">Pêche</option>
+        </select>
+
+        <label for="piedDroit">Pied Droit (Couleur):</label>
+        <select id="piedDroit">
+            <option value="ROU">Rouge</option>
+            <option value="NOI">Noir</option>
+            <option value="BLA">Blanc</option>
+            <option value="BLE">Bleu</option>
+            <option value="VER">Vert</option>
+            <option value="JAU">Jaune</option>
+            <option value="MEN">Menthe</option>
+            <option value="PEC">Pêche</option>
+        </select>
+
+        <button type="button" class="generate-btn" onclick="generateSKU()">Générer le SKU</button>
+    </div>
+
+    <script>
+        function generateSKU() {
+            // Collect values from each dropdown
+            const produit = document.getElementById("produit").value;
+            const assise = document.getElementById("assise").value;
+            const dossier = document.getElementById("dossier").value;
+            const piedGauche = document.getElementById("piedGauche").value;
+            const piedDroit = document.getElementById("piedDroit").value;
+
+            // Generate SKU based on the new rules provided
+            const skuAssise = produit + "SIE" + assise;
+            const skuDossier = produit + "DOS" + dossier;
+            const skuPiedGauche = produit + "GAU" + piedGauche;
+            const skuPiedDroit = produit + "DRO" + piedDroit;
+
+            // Concatenate all parts to generate the final SKU
+            const finalSKU = skuAssise + skuDossier + skuPiedGauche + skuPiedDroit;
+
+            // Display the generated SKU in a popup alert
+            alert(`SKU Généré : ${finalSKU}`);
+        }
+    </script>
+</body>
+</html>
