@@ -4,168 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application SKU - Génération et Inversion</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        .containers{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-        select, textarea, input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        table, th, td {
-            border: 1px solid #000;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        #generatedSKU {
-            font-size: 16px;
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            width: 100%;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const modelTranslations = {
-                'BEL': 'Béluga',
-                'DUG': 'Dugong'
-            };
-
-            const partTranslations = {
-                'SIE': 'Siège',
-                'DOS': 'Dossier',
-                'GAU': 'Accoudoir Gauche',
-                'DRO': 'Accoudoir Droit',
-                'CEN': 'Centre'
-            };
-
-            const colorTranslations = {
-                'ROU': 'Rouge',
-                'NOI': 'Noir',
-                'BLA': 'Blanc',
-                'BLE': 'Bleu',
-                'VER': 'Vert',
-                'JAU': 'Jaune',
-                'MEN': 'Menthe',
-                'PEC': 'Pêche'
-            };
-
-            function generateSKU() {
-                const produit = document.getElementById("produit").value;
-                const assise = document.getElementById("assise").value;
-                const dossier = document.getElementById("dossier").value;
-                const piedGauche = document.getElementById("piedGauche").value;
-                const piedDroit = document.getElementById("piedDroit").value;
-
-                const skuParts = [
-                    { code: produit, part: "SIE", value: assise },
-                    { code: produit, part: "DOS", value: dossier },
-                    { code: produit, part: "GAU", value: piedGauche },
-                    { code: produit, part: "DRO", value: piedDroit }
-                ];
-
-                const finalSKU = skuParts.map(part => `${part.code}${part.part}${part.value}`).join("");
-                document.getElementById("generatedSKU").value = finalSKU;
-            }
-
-            function copySKU() {
-                const skuOutput = document.getElementById("generatedSKU");
-                skuOutput.select();
-                skuOutput.setSelectionRange(0, 99999); // For mobile devices
-                navigator.clipboard.writeText(skuOutput.value).then(() => {
-                    alert("SKU copié : " + skuOutput.value);
-                }).catch(err => {
-                    console.error("Échec de la copie du SKU :", err);
-                });
-            }
-
-            function reverseSKU(skus) {
-                const skuList = skus.replace(/[^a-zA-Z]/g, '').match(/.{1,36}/g) || [];
-                const pattern = /(...)(...)(...)/g;
-                let output = "";
-
-                output += `<h2>Nombre total de produits : ${skuList.length}</h2>`;
-
-                skuList.forEach((sku, index) => {
-                    if (sku.length === 36) {
-                        output += `<h3>Produit ${index + 1} : SKU - ${sku}</h3>`;
-                        output += `<table><tr><th>Modèle</th><th>Partie</th><th>Couleur</th></tr>`;
-                        let match;
-                        while ((match = pattern.exec(sku)) !== null) {
-                            let model = modelTranslations[match[1]] || match[1];
-                            let part = partTranslations[match[2]] || match[2];
-                            let color = colorTranslations[match[3]] || match[3];
-                            output += `<tr><td>${model}</td><td>${part}</td><td>${color}</td></tr>`;
-                        }
-                        output += `</table>`;
-                    }
-                });
-
-                document.getElementById("outputArea").innerHTML = output;
-            }
-
-            document.getElementById("generateSKUButton").addEventListener("click", generateSKU);
-            document.getElementById("copySKUButton").addEventListener("click", copySKU);
-            document.getElementById("reverseSKUButton").addEventListener("click", () => {
-                reverseSKU(document.getElementById('skuInput').value);
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
-    <div class="containers">
+    <h1>Application SKU - Génération et Inversion</h1>
+    <div  class="containers">
         <div class="container">
-            <h1>Application SKU - Génération et Inversion</h1>
             <h2>Générateur SKU</h2>
             <label for="produit">Produit:</label>
             <select id="produit">
@@ -214,25 +59,30 @@
                 <option value="ROU">Rouge</option>
                 <option value="NOI">Noir</option>
                 <option value="BLA">Blanc</option>
-                <option value="BLE">Bleu</option>
+                <option value="BLEU">Bleu</option>
                 <option value="VER">Vert</option>
                 <option value="JAU">Jaune</option>
                 <option value="MEN">Menthe</option>
                 <option value="PEC">Pêche</option>
             </select>
 
-            <button type="button" class="button" id="generateSKUButton">Générer le SKU</button>
-            <input type="text" id="generatedSKU" readonly placeholder="SKU généré apparaîtra ici">
-            <button type="button" class="button" id="copySKUButton">Copier le SKU</button>
+            <div class="btn-list">
+                <button type="button" class="button" id="generateSKUButton">Générer le SKU</button>
+                <div id="skuList"></div>
+                <button type="button" class="button copy" id="copySKUButton">Copier tous les SKUs</button>
+                <button type="button" class="button" id="requestQuoteButton">Demander un Devis par mail</button>
+            </div>
         </div>
-    
+
         <div class="container">
             <h2>Inverser le SKU</h2>
             <div id="inputArea">
                 <label for="skuInput">Entrez les SKU(s) (séparés par des virgules ou des nouvelles lignes) :</label>
                 <textarea id="skuInput"></textarea>
             </div>
-            <button class="button" id="reverseSKUButton">Inverser le SKU</button>
+            <div class="btn2">
+                <button class="button " id="reverseSKUButton">Inverser le SKU</button>
+            </div>
             <div id="outputArea"></div>
         </div>
     </div>
